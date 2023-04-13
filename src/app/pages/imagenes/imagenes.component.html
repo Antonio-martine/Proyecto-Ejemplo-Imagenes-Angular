@@ -1,0 +1,29 @@
+<div class="contairner">
+    <h2>Catalogo de Imagenes</h2>
+    <div class="col-sm-4">
+        <form (ngSubmit)="saveImagen(imgForm.value)" [formGroup]="imgForm">
+            <input type="hidden" formControlName="id" />
+
+            <label for="descripcion">Descripción</label>
+            <input type="text" class="form-control" formControlName="descripcion" />
+
+            <label for="descripcion">URL de la imagen</label>
+            <input type="text" class="form-control" formControlName="url" />
+
+            <p></p>
+            <input type="submit" class="btn btn-primary" [disabled]="!imgForm.valid" value="Guardar" />
+        </form>
+    </div>
+    
+    <div class="col-sm-4">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let imagen of imagenes">
+                <img [src]="imagen.data.url" width="350" />
+                <p>{{ imagen.data.descripcion }}</p>
+                <button type="button" class="btn btn-warning" (click)="editarImagen(imagen.id)">Editar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteImagen(imagen.id)">Eliminar</button>
+
+            </li>
+        </ul>
+    </div>
+</div>
